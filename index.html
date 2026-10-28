@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm to Table — Tracked</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e8f5e9, #f4f8ee, #e0f2f1);
+      color: #203b2b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      background: white;
+      padding: 32px 24px;
+      border-radius: 24px;
+      box-shadow: 0 10px 35px rgba(30, 70, 40, 0.12);
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      color: #216b42;
+      font-size: 29px;
+      margin: 8px 0;
+    }
+
+    .subtitle {
+      color: #647568;
+      line-height: 1.6;
+      margin-bottom: 26px;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .role {
+      text-decoration: none;
+      color: #234b34;
+      background: #f4f8f3;
+      border: 2px solid #e0eadf;
+      border-radius: 16px;
+      padding: 22px 10px;
+      transition: 0.2s;
+      display: block;
+    }
+
+    .role:hover,
+    .role:focus-visible {
+      background: #e4f4e6;
+      border-color: #328653;
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    .emoji {
+      display: block;
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .role strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .role small {
+      color: #66776a;
+      font-size: 12px;
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #78867b;
+      margin-top: 26px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 360px) {
+      .container {
+        padding: 24px 14px;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+      .role {
+        padding: 18px 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <div class="logo">🌱</div>
+
+    <h1>Farm to Table — Tracked</h1>
+
+    <p class="subtitle">
+      Follow the journey of your vegetables from the farm
+      to the market and finally to your table.
+      <br><strong>Select your role to continue.</strong>
+    </p>
+
+    <div class="options">
+
+      <!-- Farmer -->
+      <a class="role"
+         href="PASTE_FARMER_FORM_LINK_HERE"
+         target="_blank" rel="noopener noreferrer">
+        <span class="emoji">👨‍🌾</span>
+        <strong>Farmer</strong>
+        <small>Register the harvest</small>
+      </a>
+
+      <!-- Retailer -->
+      <a class="role"
+         href="PASTE_RETAILER_FORM_LINK_HERE"
+         target="_blank" rel="noopener noreferrer">
+        <span class="emoji">🏪</span>
+        <strong>Retailer</strong>
+        <small>Record stock received</small>
+      </a>
+
+      <!-- Transporter -->
+      <a class="role"
+         href="PASTE_TRANSPORTER_FORM_LINK_HERE"
+         target="_blank" rel="noopener noreferrer">
+        <span class="emoji">🚚</span>
+        <strong>Transporter</strong>
+        <small>Update delivery details</small>
+      </a>
+
+      <!-- Consumer -->
+      <a class="role"
+         href="PASTE_CONSUMER_FORM_LINK_HERE"
+         target="_blank" rel="noopener noreferrer">
+        <span class="emoji">🛒</span>
+        <strong>Consumer</strong>
+        <small>Check purchase details</small>
+      </a>
+
+    </div>
+
+    <p class="footer">
+      Transparent tracking • Responsible handling •
+      Freshness awareness<br>
+      A student prototype for smarter food supply chains
+    </p>
+
+  </main>
+</body>
+</html>
