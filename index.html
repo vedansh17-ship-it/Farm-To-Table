@@ -4,113 +4,245 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e8f5e9">
   <title>Farm to Table — Tracked</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       min-height: 100vh;
+      padding: 22px 14px;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #e8f5e9, #f4f8ee, #e0f2f1);
       color: #203b2b;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px 16px;
+      background: linear-gradient(135deg, #e8f5e9, #f4f8ee, #e0f2f1);
     }
 
     .container {
       width: 100%;
-      max-width: 520px;
+      max-width: 760px;
+      margin: auto;
+      padding: 26px 20px;
       background: white;
-      padding: 32px 24px;
-      border-radius: 24px;
-      box-shadow: 0 10px 35px rgba(30, 70, 40, 0.12);
-      text-align: center;
+      border-radius: 22px;
+      box-shadow: 0 10px 35px rgba(30,70,40,.12);
     }
 
-    .logo {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      color: #216b42;
-      font-size: 29px;
-      margin: 8px 0;
-    }
-
-    .subtitle {
-      color: #647568;
-      line-height: 1.6;
-      margin-bottom: 26px;
-    }
+    .center { text-align: center; }
+    .logo { font-size: 43px; }
+    h1 { color: #216b42; font-size: 29px; margin: 8px 0; }
+    .subtitle { color: #647568; line-height: 1.6; margin-bottom: 26px; }
 
     .options {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
 
     .role {
-      text-decoration: none;
-      color: #234b34;
-      background: #f4f8f3;
+      display: block;
+      width: 100%;
+      padding: 20px 10px;
       border: 2px solid #e0eadf;
       border-radius: 16px;
-      padding: 22px 10px;
-      transition: 0.2s;
-      display: block;
+      background: #f4f8f3;
+      color: #234b34;
+      text-align: center;
+      text-decoration: none;
+      font: inherit;
+      cursor: pointer;
+      transition: .2s;
     }
 
-    .role:hover,
-    .role:focus-visible {
+    .role:hover, .role:focus-visible {
       background: #e4f4e6;
       border-color: #328653;
-      transform: translateY(-3px);
-      outline: none;
+      transform: translateY(-2px);
     }
 
-    .emoji {
-      display: block;
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    .role strong {
-      display: block;
-      font-size: 17px;
-      margin-bottom: 6px;
-    }
-
-    .role small {
-      color: #66776a;
-      font-size: 12px;
-    }
+    .emoji { display: block; font-size: 36px; margin-bottom: 10px; }
+    .role strong { display: block; font-size: 17px; margin-bottom: 6px; }
+    .role small { color: #66776a; font-size: 12px; }
 
     .footer {
-      font-size: 12px;
+      margin-top: 25px;
       color: #78867b;
-      margin-top: 26px;
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .hidden { display: none !important; }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 0;
+      border: 0;
+      background: transparent;
+      color: #216b42;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .lookup-form { display: flex; gap: 10px; margin: 18px 0; }
+
+    input {
+      flex: 1;
+      min-width: 0;
+      padding: 13px;
+      border: 1px solid #b8cdbb;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .primary {
+      padding: 13px 18px;
+      border: 0;
+      border-radius: 10px;
+      background: #267844;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .primary:disabled { opacity: .6; cursor: wait; }
+
+    .message {
+      margin: 12px 0;
+      padding: 13px;
+      border-radius: 10px;
+      background: #f4f8f3;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .error { color: #a12626; background: #fff0f0; }
+    .success { color: #216b42; background: #eff8e9; }
+
+    .product-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .product-name {
+      color: #202820;
+      font-size: 28px;
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+
+    .fresh { margin-top: 5px; color: #267844; font-weight: bold; }
+    .batch { margin-top: 12px; overflow-wrap: anywhere; }
+
+    .verified {
+      padding: 12px;
+      border: 1px solid #7bb27c;
+      border-radius: 12px;
+      background: #eff8e9;
+      color: #216b42;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .section {
+      margin: 14px 0;
+      padding: 17px;
+      border: 1px solid #d9e2d9;
+      border-radius: 14px;
+    }
+
+    .section h3 {
+      margin: 0 0 14px;
+      color: #215c37;
+      font-size: 18px;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .detail {
+      min-width: 0;
+      padding: 12px;
+      border-radius: 10px;
+      background: #f7faf6;
+      overflow-wrap: anywhere;
+    }
+
+    .detail small {
+      display: block;
+      margin-bottom: 6px;
+      color: #657568;
+      line-height: 1.4;
+    }
+
+    .detail strong { font-size: 16px; }
+
+    .journey {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 5px;
+      text-align: center;
+    }
+
+    .journey-step { min-width: 0; }
+
+    .journey-icon {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 8px;
+      border: 2px solid #7eae70;
+      border-radius: 50%;
+      background: #f4f9f0;
+      font-size: 25px;
+    }
+
+    .journey-step strong { display: block; font-size: 13px; }
+    .journey-step small {
+      display: block;
+      margin-top: 5px;
+      color: #647568;
+      font-size: 11px;
+      overflow-wrap: anywhere;
+    }
+
+    .journey-arrow {
+      color: #58934f;
+      font-size: 20px;
+      padding-top: 14px;
+    }
+
+    .note { color: #647568; font-size: 12px; line-height: 1.5; }
+    .price { color: #216b42; font-size: 24px; font-weight: bold; }
+    .thankyou {
+      margin: 18px -20px -26px;
+      padding: 20px 12px;
+      border-radius: 0 0 22px 22px;
+      background: #edf7df;
+      text-align: center;
       line-height: 1.6;
     }
 
-    @media (max-width: 360px) {
-      .container {
-        padding: 24px 14px;
-      }
-
-      h1 {
-        font-size: 25px;
-      }
-
-      .role {
-        padding: 18px 6px;
-      }
+    @media (max-width: 420px) {
+      .container { padding: 22px 14px; }
+      h1 { font-size: 25px; }
+      .lookup-form { flex-direction: column; }
+      .product-head { grid-template-columns: 1fr; }
+      .verified { justify-self: start; }
+      .section { padding: 13px; }
+      .journey-icon { width: 43px; height: 43px; font-size: 21px; }
+      .journey-step strong { font-size: 11px; }
+      .journey-arrow { font-size: 15px; }
+      .thankyou { margin: 18px -14px -22px; }
     }
   </style>
 </head>
@@ -118,62 +250,347 @@
 <body>
   <main class="container">
 
-    <div class="logo">🌱</div>
+    <!-- HOME PAGE -->
+    <section id="home">
+      <div class="center">
+        <div class="logo">🌱</div>
+        <h1>Farm to Table — Tracked</h1>
+        <p class="subtitle">
+          Follow your vegetables from the farm to the market
+          and finally to your table.
+          <br><strong>Select your role to continue.</strong>
+        </p>
+      </div>
 
-    <h1>Farm to Table — Tracked</h1>
+      <div class="options">
+        <a class="role"
+           href="https://docs.google.com/forms/d/e/1FAIpQLSfEchFR3kCr0-XGIH3-XfeeDdQeWNkoWYIncupZi9cqNAm2A/viewform?usp=publish-editor"
+           target="_blank" rel="noopener noreferrer">
+          <span class="emoji">👨‍🌾</span>
+          <strong>Farmer</strong>
+          <small>Register the harvest</small>
+        </a>
 
-    <p class="subtitle">
-      Follow the journey of your vegetables from the farm
-      to the market and finally to your table.
-      <br><strong>Select your role to continue.</strong>
-    </p>
+        <a class="role"
+           href="https://forms.gle/QPHZUcez76BaDR5p7"
+           target="_blank" rel="noopener noreferrer">
+          <span class="emoji">🏪</span>
+          <strong>Retailer</strong>
+          <small>Record stock received</small>
+        </a>
 
-    <div class="options">
+        <a class="role"
+           href="https://forms.gle/LFvt5ExHVd1BB3eEA"
+           target="_blank" rel="noopener noreferrer">
+          <span class="emoji">🏬</span>
+          <strong>Mandi</strong>
+          <small>Record arrivals and dispatch</small>
+        </a>
 
-      <!-- Farmer -->
-      <a class="role"
-         href="PASTE_FARMER_FORM_LINK_HERE"
-         target="_blank" rel="noopener noreferrer">
-        <span class="emoji">👨‍🌾</span>
-        <strong>Farmer</strong>
-        <small>Register the harvest</small>
-      </a>
+        <button class="role" type="button" onclick="showConsumer()">
+          <span class="emoji">🛒</span>
+          <strong>Consumer</strong>
+          <small>Track your crop's journey</small>
+        </button>
+      </div>
 
-      <!-- Retailer -->
-      <a class="role"
-         href="PASTE_RETAILER_FORM_LINK_HERE"
-         target="_blank" rel="noopener noreferrer">
-        <span class="emoji">🏪</span>
-        <strong>Retailer</strong>
-        <small>Record stock received</small>
-      </a>
+      <p class="footer">
+        Transparent tracking • Responsible handling • Freshness awareness
+        <br>A student prototype for smarter food supply chains
+      </p>
+    </section>
 
-      <!-- Transporter -->
-      <a class="role"
-         href="PASTE_TRANSPORTER_FORM_LINK_HERE"
-         target="_blank" rel="noopener noreferrer">
-        <span class="emoji">🚚</span>
-        <strong>Transporter</strong>
-        <small>Update delivery details</small>
-      </a>
+    <!-- CONSUMER LOOKUP PAGE -->
+    <section id="consumer" class="hidden">
+      <button class="back" type="button" onclick="showHome()">← Back to Home</button>
 
-      <!-- Consumer -->
-      <a class="role"
-         href="PASTE_CONSUMER_FORM_LINK_HERE"
-         target="_blank" rel="noopener noreferrer">
-        <span class="emoji">🛒</span>
-        <strong>Consumer</strong>
-        <small>Check purchase details</small>
-      </a>
+      <div class="center">
+        <div class="logo">🌱</div>
+        <h1>Farm2Fork Trace</h1>
+        <p class="subtitle">Scan • Track • Trust</p>
+      </div>
 
-    </div>
+      <h2 class="panel-title">Track your vegetable</h2>
+      <p>Enter the Batch ID provided by the farmer, mandi or retailer.</p>
 
-    <p class="footer">
-      Transparent tracking • Responsible handling •
-      Freshness awareness<br>
-      A student prototype for smarter food supply chains
-    </p>
+      <form id="lookupForm" class="lookup-form">
+        <input id="batchInput" name="batch" type="text"
+               placeholder="e.g. FT001" required
+               aria-label="Batch ID">
+        <button id="searchButton" class="primary" type="submit">Track</button>
+      </form>
 
+      <div id="status" class="message hidden" role="status"></div>
+      <div id="results" class="hidden" aria-live="polite"></div>
+
+      <p class="footer">
+        Information shown here comes from the submitted tracking forms.
+      </p>
+    </section>
   </main>
+
+  <script>
+    // Your existing Google Apps Script web app URL
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbx87MMn5JVu_-bpYGjlO_8ndThJBjTn2HhxPL_Es-WGSLdRUXzGyB3vTR3WHYrZmIy_/exec";
+
+    const home = document.getElementById("home");
+    const consumer = document.getElementById("consumer");
+    const statusBox = document.getElementById("status");
+    const results = document.getElementById("results");
+    const lookupForm = document.getElementById("lookupForm");
+    const batchInput = document.getElementById("batchInput");
+    const searchButton = document.getElementById("searchButton");
+
+    function showConsumer() {
+      home.classList.add("hidden");
+      consumer.classList.remove("hidden");
+      batchInput.focus();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showHome() {
+      consumer.classList.add("hidden");
+      home.classList.remove("hidden");
+      statusBox.classList.add("hidden");
+      results.classList.add("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, function (char) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        }[char];
+      });
+    }
+
+    function valueOf(record, key) {
+      return record && record[key] !== undefined
+        ? String(record[key]).trim()
+        : "";
+    }
+
+    function showStatus(message, type) {
+      statusBox.className = "message " + (type || "");
+      statusBox.textContent = message;
+    }
+
+    function hideStatus() {
+      statusBox.classList.add("hidden");
+    }
+
+    function detail(label, value) {
+      if (!value) return "";
+      return `
+        <div class="detail">
+          <small>${escapeHTML(label)}</small>
+          <strong>${escapeHTML(value)}</strong>
+        </div>`;
+    }
+
+    function section(title, content) {
+      if (!content) return "";
+      return `
+        <section class="section">
+          <h3>${escapeHTML(title)}</h3>
+          ${content}
+        </section>`;
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      return date.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+      });
+    }
+
+    function daysSinceHarvest(value) {
+      if (!value) return "";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return "";
+
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const harvested = new Date(
+        date.getFullYear(), date.getMonth(), date.getDate()
+      );
+
+      const days = Math.floor((today - harvested) / 86400000);
+      return days >= 0 ? String(days) : "";
+    }
+
+    function renderResults(data, requestedBatch) {
+      const farmer = data.farmer;
+      const mandi = data.mandi;
+      const retailer = data.retailer;
+
+      if (!farmer && !mandi && !retailer) {
+        results.classList.add("hidden");
+        showStatus(
+          "No records were found for Batch ID " + requestedBatch +
+          ". Check the ID and try again.",
+          "error"
+        );
+        return;
+      }
+
+      const crop = valueOf(farmer, "Crop Variety") || "Crop details";
+      const harvest = valueOf(farmer, "Harvest Date and Time");
+      const farmName = valueOf(farmer, "Farmer Name");
+      const village = valueOf(farmer, "Village");
+      const location = valueOf(farmer, "Farm Location");
+      const method = valueOf(farmer, "Farming Method");
+
+      const days = daysSinceHarvest(harvest);
+      const harvestDate = formatDate(harvest);
+
+      const farmerDetails = [
+        detail("Farmer", farmName),
+        detail("Village", village),
+        detail("Farm location", location),
+        detail("Farming method", method),
+        detail("Harvest date", harvestDate),
+        detail("Quantity harvested", valueOf(farmer, "Quantity Harvested"))
+      ].join("");
+
+      const mandiDetails = [
+        detail("Mandi name", valueOf(mandi, "Mandi Name")),
+        detail("Arrival date", formatDate(valueOf(mandi, "Arrival Date"))),
+        detail("Arrival time", valueOf(mandi, "Arrival Time")),
+        detail("Quantity received", valueOf(mandi, "Quantity Received (kg)") ? valueOf(mandi, "Quantity Received (kg)") + " kg" : ""),
+        detail("Damaged quantity", valueOf(mandi, "Damaged Quantity (kg)") ? valueOf(mandi, "Damaged Quantity (kg)") + " kg" : ""),
+        detail("Selling price at mandi", valueOf(mandi, "Selling Price (₹ per kg)") ? "₹" + valueOf(mandi, "Selling Price (₹ per kg)") + "/kg" : ""),
+        detail("Dispatch date and time", valueOf(mandi, "Dispatch Date and Time"))
+      ].join("");
+
+      const retailerDetails = [
+        detail("Store name", valueOf(retailer, "Store Name")),
+        detail("Store location", valueOf(retailer, "Store Location")),
+        detail("Arrival date", formatDate(valueOf(retailer, "Arrival Date"))),
+        detail("Arrival time", valueOf(retailer, "Arrival Time")),
+        detail("Quantity received", valueOf(retailer, "Quantity Received (kg)") ? valueOf(retailer, "Quantity Received (kg)") + " kg" : ""),
+        detail("Quantity sold", valueOf(retailer, "Quantity Sold (kg)") ? valueOf(retailer, "Quantity Sold (kg)") + " kg" : ""),
+        detail("Quantity wasted", valueOf(retailer, "Quantity Wasted (kg)") ? valueOf(retailer, "Quantity Wasted (kg)") + " kg" : ""),
+        detail("Final retail price", valueOf(retailer, "Final Retail Price (₹ per kg)") ? "₹" + valueOf(retailer, "Final Retail Price (₹ per kg)") + "/kg" : "")
+      ].join("");
+
+      const steps = [
+        { name: "FARM", icon: "🌱", date: harvestDate, exists: !!farmer },
+        { name: "MANDI", icon: "🏬", date: formatDate(valueOf(mandi, "Arrival Date")), exists: !!mandi },
+        { name: "RETAILER", icon: "🏪", date: formatDate(valueOf(retailer, "Arrival Date")), exists: !!retailer },
+        { name: "YOU", icon: "🛒", date: "Batch lookup", exists: true }
+      ];
+
+      const journey = steps.map((step, index) => `
+        <div class="journey-step">
+          <div class="journey-icon">${step.icon}</div>
+          <strong>${step.name}</strong>
+          <small>${escapeHTML(step.date || (step.exists ? "Date unavailable" : "No record yet"))}</small>
+        </div>
+        ${index < steps.length - 1 ? '<div class="journey-arrow">→</div>' : ""}
+      `).join("");
+
+      // Use the entered batch ID. Do not claim independent certification.
+      results.innerHTML = `
+        <div class="product-head">
+          <div>
+            <div class="product-name">${escapeHTML(crop.toUpperCase())}</div>
+            <div class="fresh">Farm-to-market tracking details</div>
+            <div class="batch"><strong>Batch ID:</strong> ${escapeHTML(requestedBatch)}</div>
+            <div class="batch"><strong>Harvested:</strong> ${escapeHTML(harvestDate || "Date unavailable")}</div>
+          </div>
+          <div class="verified">🌿<br><strong>TRACKING</strong><br>RECORD</div>
+        </div>
+
+        ${section("🌿 PRODUCT OVERVIEW", `
+          <div class="details">
+            ${detail("Crop", crop)}
+            ${detail("Days since harvest", days ? days + (days === "1" ? " day" : " days") : "Unavailable")}
+          </div>
+          <p class="note">Days are calculated from the harvest date when it can be read. This is not a laboratory freshness or food-safety test.</p>
+        `)}
+
+        ${section("👨‍🌾 FARM ORIGIN", farmerDetails
+          ? `<div class="details">${farmerDetails}</div>`
+          : '<p>Farmer details have not been submitted for this batch.</p>')}
+
+        ${section("🧭 JOURNEY SO FAR", `
+          <div class="journey">${journey}</div>
+          <p class="note">A stage without a submitted record may not yet have been recorded.</p>
+        `)}
+
+        ${section("🏬 MANDI DETAILS", mandiDetails
+          ? `<div class="details">${mandiDetails}</div>`
+          : '<p>Mandi details have not been submitted for this batch.</p>')}
+
+        ${section("🏪 RETAILER DETAILS", retailerDetails
+          ? `<div class="details">${retailerDetails}</div>`
+          : '<p>Retailer details have not been submitted for this batch.</p>')}
+
+        <div class="message success">
+          <strong>Traceability record loaded.</strong><br>
+          The details above come from the records available for this Batch ID.
+        </div>
+
+        <div class="thankyou">
+          🌱 <strong>Thank you for choosing traceable food!</strong><br>
+          Eat fresh, eat healthy.
+        </div>
+      `;
+
+      hideStatus();
+      results.classList.remove("hidden");
+    }
+
+    lookupForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const batch = batchInput.value.trim();
+      if (!batch) {
+        showStatus("Please enter a Batch ID.", "error");
+        return;
+      }
+
+      results.classList.add("hidden");
+      showStatus("Searching for batch " + batch + "…");
+      searchButton.disabled = true;
+      searchButton.textContent = "Searching…";
+
+      try {
+        const url = API_URL + "?batch=" + encodeURIComponent(batch);
+        const response = await fetch(url, { method: "GET" });
+
+        if (!response.ok) {
+          throw new Error("The tracking service returned an error.");
+        }
+
+        const data = await response.json();
+
+        if (data.status !== "success") {
+          throw new Error(data.message || "Could not retrieve the batch.");
+        }
+
+        renderResults(data, batch);
+      } catch (error) {
+        showStatus(
+          "We couldn't load the tracking details. Please check your internet connection and try again. If this keeps happening, the Apps Script web app may need its access or cross-origin settings checked.",
+          "error"
+        );
+        console.error("Batch lookup error:", error);
+      } finally {
+        searchButton.disabled = false;
+        searchButton.textContent = "Track";
+      }
+    });
+  </script>
 </body>
 </html>
